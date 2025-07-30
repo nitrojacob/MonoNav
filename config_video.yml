@@ -14,10 +14,10 @@ num_prezoe_frames: 5 # how many times to run ZoeDepth before starting (the first
 filterYvals: True #this helps filter out the ground / ceiling (for planar navigation)
 filterWeights: True # this helps filter out low-weight voxels
 filterTSDF: True
-weight_threshold: 0.1 # determine the weight threshold for filtering (higher threshold -> fewer points)
+weight_threshold: 3. # determine the weight threshold for filtering (higher threshold -> fewer points)
 VoxelBlockGrid:
   depth_scale: 1000.0 # 1000.0 is default (mm to m), scale factor for depth values during integration
-  depth_max: 700.0 # max depth to include in the reconstruction
+  depth_max: 7.0 # max depth to include in the reconstruction
   trunc_voxel_multiplier: 8.0
   device: "CPU:0" # "CUDA:0" (faster) or "CPU:0" (if no GPU is available)
 

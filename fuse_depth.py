@@ -27,7 +27,7 @@ import yaml
 from utils.utils import *
 #####################################################################
 
-addPose = True
+addPose = False 
 
 CONFIG_PATH = "config.yml"
 with open(CONFIG_PATH, "r") as f:
@@ -80,7 +80,10 @@ for filename in depth_files:
     # Integrate
     depth_file = depth_dir + "/" + source + "_frame-%06d.depth.npy"%(frame_number)
     depth_numpy = np.load(depth_file) # mm
-    vbg.integration_step(color, depth_numpy, cam_pose)
+    try:
+        vbg.integration_step(color, depth_numpy, cam_pose)
+    except:
+        print("Unable to integrate %d/%d"%(frame_number, end_frame))
 
 #####################################################################
 # Print out timing information
@@ -103,7 +106,7 @@ if addPose:
     visualizer.run()
     visualizer.destroy_window()
 else:
-    o3d.visualization.draw([pcd])
+    o3d.visualization.draw_geometries([pcd])
 
 #####################################################################
 
